@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  ============================================================
+  TODO BEFORE LAUNCH — replace every string marked TODO below.
+  These meta tags control your Google result and the preview
+  card shown when someone shares the link on Discord, BlueSky,
+  Instagram, etc. Shipping them unfilled looks broken.
+  See README.md for the full checklist.
+  ============================================================
+-->
+<title>TODO: Page title — e.g. "Alert5 — a fighter jet tactical RPG"</title>
+<meta name="description" content="TODO: One or two sentences describing Alert5. This is the text that appears under your link in search results. Aim for 150-160 characters.">
+
+<!-- Canonical URL. TODO: replace with your real domain once you have one. -->
+<link rel="canonical" href="https://TODO-your-domain.example/">
+
+<!-- Open Graph (Discord, Facebook, BlueSky, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alert5">
+<meta property="og:title" content="TODO: Share-card title">
+<meta property="og:description" content="TODO: Share-card description, one or two sentences.">
+<meta property="og:url" content="https://TODO-your-domain.example/">
+<!-- TODO: add a 1200x630 image at this path. Until it exists, shared links show no image. -->
+<meta property="og:image" content="https://TODO-your-domain.example/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TODO: describe the share image for screen readers">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TODO: Share-card title">
+<meta name="twitter:description" content="TODO: Share-card description.">
+<meta name="twitter:image" content="https://TODO-your-domain.example/share-card.png">
+
+<meta name="theme-color" content="#0a0418">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="styles.css">
+
+<!-- Favicon drawn inline so the site needs no image files yet. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0418'/%3E%3Cpath d='M16 4 L20 15 L28 26 L16 21 L4 26 L12 15 Z' fill='none' stroke='%23ff2d95' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#top">
+      <span class="wordmark-alert">ALERT</span><span class="wordmark-five">5</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#about">The Game</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a class="btn btn-sm" href="#signup">Get Updates</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <!-- Decorative background: all CSS/SVG, no image files required. -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="grid-floor"><div class="grid-floor-inner"></div></div>
+      <div class="stars"></div>
+      <div class="scanlines"></div>
+    </div>
+
+    <div class="wrap hero-inner">
+
+      <p class="eyebrow">In Development</p>
+
+      <!-- TODO: replace this whole block with your headline, e.g. <h1>Alert5</h1> -->
+      <h1 class="hero-title">
+        <span class="slot slot-xl" data-label="HEADLINE"></span>
+      </h1>
+
+      <!-- TODO: replace with your one-line tagline. -->
+      <p class="hero-tagline">
+        <span class="slot slot-lg" data-label="TAGLINE — ONE LINE"></span>
+      </p>
+
+      <!-- TODO: replace with 2-3 sentences of elevator pitch. -->
+      <div class="hero-pitch">
+        <span class="slot slot-md" data-label="SHORT PITCH — 2-3 SENTENCES"></span>
+      </div>
+
+      <!-- ===================== EMAIL CAPTURE (PRIMARY) ===================== -->
+      <div class="signup-card" id="signup">
+        <h2 class="signup-heading">Join the mailing list</h2>
+        <p class="signup-sub">
+          <span class="slot slot-sm" data-label="WHAT SUBSCRIBERS GET / HOW OFTEN YOU'LL EMAIL"></span>
+        </p>
+
+        <form class="signup-form" data-signup-form novalidate>
+          <div class="field">
+            <label class="visually-hidden" for="email-hero">Email address</label>
+            <input
+              class="input"
+              id="email-hero"
+              name="email"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              placeholder="pilot@example.com"
+              required
+              aria-describedby="status-hero">
+          </div>
+
+          <!-- Spam honeypot: hidden from humans, bots fill it in. -->
+          <div class="honeypot" aria-hidden="true">
+            <label for="website-hero">Leave this field empty</label>
+            <input id="website-hero" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn-primary" type="submit">Notify Me</button>
+        </form>
+
+        <p class="form-status" id="status-hero" data-form-status role="status" aria-live="polite"></p>
+        <p class="fineprint">No spam. Unsubscribe anytime.</p>
+      </div>
+
+    </div>
+
+    <!-- Decorative jet, drawn in SVG so it needs no asset file. -->
+    <div class="hero-jet" aria-hidden="true">
+      <svg viewBox="0 0 200 180" role="presentation" focusable="false">
+        <g class="jet-art">
+          <path class="jet-wing" d="M108 78 L172 134 L169 145 L108 127 Z"/>
+          <path class="jet-wing" d="M92 78 L28 134 L31 145 L92 127 Z"/>
+          <path class="jet-tail" d="M106 138 L138 166 L135 174 L104 158 Z"/>
+          <path class="jet-tail" d="M94 138 L62 166 L65 174 L96 158 Z"/>
+          <path class="jet-body" d="M100 4 L108 40 L110 96 L106 150 L100 166 L94 150 L90 96 L92 40 Z"/>
+          <ellipse class="jet-canopy" cx="100" cy="44" rx="6.5" ry="17"/>
+          <path class="jet-burn" d="M96 164 L100 180 L104 164 Z"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============================ ABOUT ============================ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <p class="section-kicker">01 / Briefing</p>
+      <h2 class="section-title">What is Alert5?</h2>
+
+      <!-- TODO: 1-2 paragraphs on the premise and setting. -->
+      <div class="section-lede">
+        <span class="slot slot-md" data-label="PREMISE — 1-2 PARAGRAPHS"></span>
+      </div>
+
+      <!-- TODO: replace each card with a real pillar of the game.
+           Add or remove <li> blocks freely; the grid reflows on its own. -->
+      <ul class="feature-grid">
+        <li class="feature-card">
+          <span class="feature-num">01</span>
+          <h3 class="feature-title"><span class="slot slot-sm" data-label="FEATURE 01 — TITLE"></span></h3>
+          <p class="feature-body"><span class="slot slot-sm" data-label="FEATURE 01 — 1-2 SENTENCES"></span></p>
+        </li>
+        <li class="feature-card">
+          <span class="feature-num">02</span>
+          <h3 class="feature-title"><span class="slot slot-sm" data-label="FEATURE 02 — TITLE"></span></h3>
+          <p class="feature-body"><span class="slot slot-sm" data-label="FEATURE 02 — 1-2 SENTENCES"></span></p>
+        </li>
+        <li class="feature-card">
+          <span class="feature-num">03</span>
+          <h3 class="feature-title"><span class="slot slot-sm" data-label="FEATURE 03 — TITLE"></span></h3>
+          <p class="feature-body"><span class="slot slot-sm" data-label="FEATURE 03 — 1-2 SENTENCES"></span></p>
+        </li>
+        <li class="feature-card">
+          <span class="feature-num">04</span>
+          <h3 class="feature-title"><span class="slot slot-sm" data-label="FEATURE 04 — TITLE"></span></h3>
+          <p class="feature-body"><span class="slot slot-sm" data-label="FEATURE 04 — 1-2 SENTENCES"></span></p>
+        </li>
+      </ul>
+
+      <!-- TODO: fill in or delete. Good place for player count, play time, age. -->
+      <dl class="spec-strip">
+        <div class="spec">
+          <dt>Players</dt>
+          <dd><span class="slot slot-xs" data-label="e.g. 1-4"></span></dd>
+        </div>
+        <div class="spec">
+          <dt>Play Time</dt>
+          <dd><span class="slot slot-xs" data-label="e.g. 90 min"></span></dd>
+        </div>
+        <div class="spec">
+          <dt>Ages</dt>
+          <dd><span class="slot slot-xs" data-label="e.g. 14+"></span></dd>
+        </div>
+        <div class="spec">
+          <dt>Status</dt>
+          <dd><span class="slot slot-xs" data-label="e.g. Prototype"></span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================ GALLERY ============================ -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <p class="section-kicker">02 / Visuals</p>
+      <h2 class="section-title">Gallery</h2>
+      <div class="section-lede">
+        <span class="slot slot-sm" data-label="OPTIONAL INTRO LINE FOR THE GALLERY"></span>
+      </div>
+
+      <!--
+        TODO: swap each figure's .media-slot for a real asset:
+        <figure class="tile">
+          <img src="images/your-photo.jpg" alt="Describe the image" loading="lazy">
+          <figcaption>Your caption</figcaption>
+        </figure>
+        Keep the alt text — it matters for accessibility and SEO.
+      -->
+      <ul class="gallery-grid">
+        <li><figure class="tile"><div class="media-slot" data-label="IMAGE 01"></div><figcaption>Caption 01</figcaption></figure></li>
+        <li><figure class="tile"><div class="media-slot" data-label="IMAGE 02"></div><figcaption>Caption 02</figcaption></figure></li>
+        <li><figure class="tile"><div class="media-slot" data-label="IMAGE 03"></div><figcaption>Caption 03</figcaption></figure></li>
+        <li><figure class="tile"><div class="media-slot" data-label="IMAGE 04"></div><figcaption>Caption 04</figcaption></figure></li>
+        <li><figure class="tile"><div class="media-slot" data-label="IMAGE 05"></div><figcaption>Caption 05</figcaption></figure></li>
+        <li><figure class="tile tile-wide"><div class="media-slot" data-label="VIDEO OR WIDE SHOT"></div><figcaption>Caption 06</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ ROADMAP ============================ -->
+  <section class="section" id="roadmap">
+    <div class="wrap">
+      <p class="section-kicker">03 / Flight Plan</p>
+      <h2 class="section-title">Development Roadmap</h2>
+      <div class="section-lede">
+        <span class="slot slot-sm" data-label="OPTIONAL INTRO LINE FOR THE ROADMAP"></span>
+      </div>
+
+      <!--
+        TODO: fill in each milestone. Mark the current one by adding
+        class "is-current" to its <li>, and finished ones with "is-done".
+      -->
+      <ol class="timeline">
+        <li class="milestone is-done">
+          <span class="milestone-dot" aria-hidden="true"></span>
+          <p class="milestone-date"><span class="slot slot-xs" data-label="DATE / PHASE"></span></p>
+          <h3 class="milestone-title"><span class="slot slot-sm" data-label="MILESTONE 01"></span></h3>
+          <p class="milestone-body"><span class="slot slot-sm" data-label="ONE LINE ON WHAT THIS COVERS"></span></p>
+        </li>
+        <li class="milestone is-current">
+          <span class="milestone-dot" aria-hidden="true"></span>
+          <p class="milestone-date"><span class="slot slot-xs" data-label="DATE / PHASE"></span></p>
+          <h3 class="milestone-title"><span class="slot slot-sm" data-label="MILESTONE 02"></span></h3>
+          <p class="milestone-body"><span class="slot slot-sm" data-label="ONE LINE ON WHAT THIS COVERS"></span></p>
+        </li>
+        <li class="milestone">
+          <span class="milestone-dot" aria-hidden="true"></span>
+          <p class="milestone-date"><span class="slot slot-xs" data-label="DATE / PHASE"></span></p>
+          <h3 class="milestone-title"><span class="slot slot-sm" data-label="MILESTONE 03"></span></h3>
+          <p class="milestone-body"><span class="slot slot-sm" data-label="ONE LINE ON WHAT THIS COVERS"></span></p>
+        </li>
+        <li class="milestone">
+          <span class="milestone-dot" aria-hidden="true"></span>
+          <p class="milestone-date"><span class="slot slot-xs" data-label="DATE / PHASE"></span></p>
+          <h3 class="milestone-title"><span class="slot slot-sm" data-label="MILESTONE 04"></span></h3>
+          <p class="milestone-body"><span class="slot slot-sm" data-label="ONE LINE ON WHAT THIS COVERS"></span></p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ FAQ ============================ -->
+  <section class="section section-alt" id="faq">
+    <div class="wrap wrap-narrow">
+      <p class="section-kicker">04 / Debrief</p>
+      <h2 class="section-title">FAQ</h2>
+
+      <!-- TODO: rewrite the questions and fill in the answers.
+           Copy a <details> block to add more. -->
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>When will Alert5 be available?</summary>
+          <div class="faq-answer"><span class="slot slot-sm" data-label="ANSWER 01"></span></div>
+        </details>
+        <details class="faq-item">
+          <summary>How does it play?</summary>
+          <div class="faq-answer"><span class="slot slot-sm" data-label="ANSWER 02"></span></div>
+        </details>
+        <details class="faq-item">
+          <summary>Will there be a crowdfunding campaign?</summary>
+          <div class="faq-answer"><span class="slot slot-sm" data-label="ANSWER 03"></span></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I playtest it?</summary>
+          <div class="faq-answer"><span class="slot slot-sm" data-label="ANSWER 04"></span></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EMAIL CAPTURE (CLOSING) ==================== -->
+  <section class="section cta-section" id="signup-bottom">
+    <div class="wrap wrap-narrow cta-inner">
+      <h2 class="section-title cta-title">Don't miss the callsign drop</h2>
+      <p class="cta-sub">
+        <span class="slot slot-sm" data-label="ONE LINE — WHY THEY SHOULD SUBSCRIBE"></span>
+      </p>
+
+      <form class="signup-form signup-form-wide" data-signup-form novalidate>
+        <div class="field">
+          <label class="visually-hidden" for="email-bottom">Email address</label>
+          <input
+            class="input"
+            id="email-bottom"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="pilot@example.com"
+            required
+            aria-describedby="status-bottom">
+        </div>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="website-bottom">Leave this field empty</label>
+          <input id="website-bottom" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Notify Me</button>
+      </form>
+
+      <p class="form-status" id="status-bottom" data-form-status role="status" aria-live="polite"></p>
+      <p class="fineprint">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="wordmark wordmark-sm">
+        <span class="wordmark-alert">ALERT</span><span class="wordmark-five">5</span>
+      </span>
+      <p class="footer-note">
+        <span class="slot slot-xs" data-label="STUDIO OR CREATOR NAME"></span>
+      </p>
+    </div>
+
+    <!-- TODO: replace every href="#" with your real profile URL.
+         Delete any platform you don't use. -->
+    <nav class="social" aria-label="Social links">
+      <a href="#" aria-label="Alert5 on BlueSky" rel="me noopener" title="BlueSky — TODO: add URL">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 10.8C10.9 8.6 7.9 4.6 5.1 2.7 2.4.9 1.4 1.2.8 1.5.1 1.8 0 2.9 0 3.5c0 .6.3 5.2.6 6 .8 2.5 3.5 3.4 6 3.1h.4-.4c-3.7.5-7 1.9-2.7 6.7 4.7 4.9 6.5-1.1 7.4-4.1.9 3 1.9 8.8 7.2 4.1 4-4.1 1.1-6.2-2.6-6.7h-.4.4c2.5.3 5.2-.6 6-3.1.3-.8.6-5.4.6-6 0-.6-.1-1.7-.8-2C21.1 1.2 20.1.9 17.4 2.7 14.6 4.6 11.6 8.6 12 10.8z"/></svg>
+      </a>
+      <a href="#" aria-label="Alert5 on Instagram" rel="me noopener" title="Instagram — TODO: add URL">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1A6.7 6.7 0 1018.7 12 6.7 6.7 0 0012 5.3zm0 11a4.3 4.3 0 114.3-4.3 4.3 4.3 0 01-4.3 4.3zm6.9-11.3a1.6 1.6 0 11-1.6-1.6 1.6 1.6 0 011.6 1.6z"/></svg>
+      </a>
+      <a href="#" aria-label="Alert5 on Discord" rel="me noopener" title="Discord — TODO: add URL">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.3 4.6A19.8 19.8 0 0015.4 3l-.2.5a18.3 18.3 0 015 1.6c-2.4-1.1-4.8-1.5-7.2-1.5S6.2 4 3.8 5.1a18.3 18.3 0 015-1.6L8.6 3a19.8 19.8 0 00-4.9 1.6C.9 8.7.1 12.7.5 16.6A20 20 0 006.6 20l.8-1.3a13 13 0 01-2-1l.4-.3a14 14 0 0012.4 0l.4.3a13 13 0 01-2 1l.8 1.3a20 20 0 006.1-3.4c.5-4.6-.8-8.5-3.2-12zM8.3 14.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm7.4 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
+      </a>
+      <a href="#" aria-label="Alert5 on BoardGameGeek" rel="me noopener" title="BoardGameGeek — TODO: add URL">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1.6l9.6 5.5v9.8L12 22.4 2.4 16.9V7.1L12 1.6zm0 2.8L4.8 8.5v7L12 19.6l7.2-4.1v-7L12 4.4zm0 3.1l4.5 2.6v5.2L12 17.9l-4.5-2.6v-5.2L12 7.5z"/></svg>
+      </a>
+    </nav>
+  </div>
+
+  <div class="wrap footer-legal">
+    <p>&copy; <span data-year>2026</span> <span class="slot slot-xs" data-label="RIGHTS HOLDER"></span>. All rights reserved.</p>
+    <p class="footer-back"><a href="#top">Back to top &uarr;</a></p>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
