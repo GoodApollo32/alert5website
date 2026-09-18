@@ -50,17 +50,17 @@ fallback all stay as they are.
 the request body in `main.js` — the validation, honeypot, status messages and
 fallback all stay as they are.
 
-### 2. Fill in the meta tags (required — these are your search and share preview)
+### 2. Meta tags — written
 
-The URLs are already set to `alert5game.com`. What remains is text:
+Title, description, Open Graph and Twitter tags are all filled in and
+point at `alert5game.com`. Lengths are inside the limits search engines
+and social cards truncate at (title 53 chars, descriptions ~148).
 
-- [ ] `<title>`
-- [ ] `<meta name="description">` — aim for 150–160 characters
-- [ ] `og:title`, `og:description`, `twitter:title`, `twitter:description`
-- [ ] `og:image:alt`
-- [ ] Add `share-card.png` (1200×630) to the repo root — the meta tags
-      already point at it, but the file does not exist yet, so shared
-      links currently show no preview image.
+One thing outstanding:
+
+- [ ] Add `share-card.png` (1200×630) to the repo root. The meta tags
+      already reference it, but the file does not exist, so shared links
+      currently render without a preview image.
 
 ### 3. Write the page content
 
