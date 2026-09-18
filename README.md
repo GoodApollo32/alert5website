@@ -47,15 +47,15 @@ fallback all stay as they are.
 
 ### 2. Fill in the meta tags (required — these are your search and share preview)
 
-Everything marked `TODO` in the `<head>` of `index.html`:
+The URLs are already set to `alert5game.com`. What remains is text:
 
 - [ ] `<title>`
 - [ ] `<meta name="description">` — aim for 150–160 characters
 - [ ] `og:title`, `og:description`, `twitter:title`, `twitter:description`
-- [ ] `og:url` and `<link rel="canonical">` — your real domain
-- [ ] `og:image` / `twitter:image` — a 1200×630 PNG, plus its `og:image:alt`
-
-Shared links show no preview image until that file exists.
+- [ ] `og:image:alt`
+- [ ] Add `share-card.png` (1200×630) to the repo root — the meta tags
+      already point at it, but the file does not exist yet, so shared
+      links currently show no preview image.
 
 ### 3. Write the page content
 
@@ -92,11 +92,38 @@ The workflow publishes the repository root on every push to `main`.
 **One-time setup:** repo **Settings → Pages → Build and deployment → Source:
 "GitHub Actions"**. Without that, the workflow runs but nothing goes live.
 
-A custom domain goes in **Settings → Pages → Custom domain**, which commits a
-`CNAME` file. Update `og:url` and the canonical link to match.
-
 `.nojekyll` is present so GitHub serves the files as-is rather than running
 them through Jekyll.
+
+### Custom domain (alert5game.com, DNS on Cloudflare)
+
+The `CNAME` file at the repo root holds the apex domain. It is part of the
+uploaded Pages artifact, so the custom domain survives every deploy rather
+than depending only on the repo setting.
+
+Cloudflare DNS records, all **DNS only (grey cloud)**:
+
+| Type  | Name  | Value |
+| ----- | ----- | ----- |
+| A     | `@`   | `185.199.108.153` |
+| A     | `@`   | `185.199.109.153` |
+| A     | `@`   | `185.199.110.153` |
+| A     | `@`   | `185.199.111.153` |
+| AAAA  | `@`   | `2606:50c0:8000::153` |
+| AAAA  | `@`   | `2606:50c0:8001::153` |
+| AAAA  | `@`   | `2606:50c0:8002::153` |
+| AAAA  | `@`   | `2606:50c0:8003::153` |
+| CNAME | `www` | `goodapollo32.github.io` |
+
+The `www` target is the user subdomain with no repo path. GitHub redirects
+`www` to the apex automatically once the apex is set as the custom domain.
+
+Then **Settings → Pages → Custom domain** → `alert5game.com`, wait for the
+certificate to issue, and tick **Enforce HTTPS**.
+
+If the proxy (orange cloud) is ever turned on, **SSL/TLS must be set to Full
+(strict)** first. On Flexible, GitHub forces HTTPS while Cloudflare speaks
+HTTP to it and requests bounce between them forever.
 
 ## Working on it locally
 
