@@ -18,7 +18,7 @@
         https://buttondown.com/<THIS-PART>
      3. Paste it between the quotes below and redeploy.
      ---------------------------------------------------------- */
-  var BUTTONDOWN_USERNAME = 'YOUR-BUTTONDOWN-USERNAME';
+  var BUTTONDOWN_USERNAME = 'alert5';
 
   /* Endpoint Buttondown's embedded forms post to. Normally no need to touch. */
   var ENDPOINT_BASE = 'https://buttondown.com/api/emails/embed-subscribe/';

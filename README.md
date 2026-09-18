@@ -22,24 +22,29 @@ The page ships with **empty content areas on purpose** — every one shows as a
 dashed box with a monospace field label so the layout doesn't collapse. Work
 through this list and the placeholders disappear as you fill them in.
 
-### 1. Connect the email signup (required — the form does nothing until you do)
+### 1. Email signup — connected
 
-1. Create a newsletter at <https://buttondown.com> (free up to 100 subscribers).
-2. Your username is the last part of your newsletter URL:
-   `https://buttondown.com/<this-part>`.
-3. Open `main.js` and replace the placeholder near the top:
+Wired to the Buttondown list `alert5`
+(`BUTTONDOWN_USERNAME` in `main.js`). Both forms POST to
+`https://buttondown.com/api/emails/embed-subscribe/alert5`.
 
-   ```js
-   var BUTTONDOWN_USERNAME = 'YOUR-BUTTONDOWN-USERNAME';
-   ```
+Behaviour, verified against a mocked endpoint:
 
-Until that is set, submitting the form shows an amber
-*"Signup is not connected yet"* notice and logs a console warning. It never
-shows a fake success message and never sends the address anywhere.
+| Case | Result |
+| ---- | ------ |
+| Success | "Check your inbox for a confirmation email", field cleared |
+| Server error | Error message, email left in the field so it can be retried |
+| Invalid / empty | Caught before any request is sent |
+| `fetch` blocked | Falls back to a plain form POST to Buttondown's own confirmation page, so nobody is silently dropped |
+| Honeypot filled | Silently ignored (a bot) |
 
-Once configured, the form POSTs to Buttondown over `fetch`. If that request is
-blocked for any reason, it falls back to a plain form submission that lands on
-Buttondown's own confirmation page, so a visitor is never silently dropped.
+If `BUTTONDOWN_USERNAME` is ever blanked or reset to a `YOUR-` placeholder,
+the form stops submitting and shows an amber "not connected" notice rather
+than a false success.
+
+**Switching to ConvertKit or Mailchimp instead?** Replace `ENDPOINT_BASE` and
+the request body in `main.js` — the validation, honeypot, status messages and
+fallback all stay as they are.
 
 **Switching to ConvertKit or Mailchimp instead?** Replace `ENDPOINT_BASE` and
 the request body in `main.js` — the validation, honeypot, status messages and
