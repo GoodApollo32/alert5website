@@ -51,7 +51,10 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  /* Clears the sticky notice + header so anchor targets are not hidden
+     underneath them. Overridden below for narrow screens, where the
+     header wraps to two rows and the stack is taller. */
+  scroll-padding-top: 132px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -191,10 +194,67 @@ a:hover { color: var(--cyan-soft); }
 /* ============================================================
    HEADER
    ============================================================ */
-.site-header {
+/* The notice and the header stick together as one unit, so the
+   placeholder-art warning stays on screen at every scroll position.
+   Sticking them as a pair avoids having to hard-code the notice's
+   height as the header's `top` offset, which would break the moment
+   the notice text wraps to a second line on a narrow screen. */
+.topbar {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+/* ---------- Placeholder-art notice ---------- */
+.art-notice {
+  background: linear-gradient(90deg, rgba(255, 179, 71, 0.16), rgba(255, 45, 149, 0.12));
+  border-bottom: 1px solid rgba(255, 179, 71, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.art-notice-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-block: 9px;
+  text-align: center;
+}
+.art-notice p {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  color: #ffd9a0;
+}
+.art-notice strong {
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.art-notice-icon {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  color: var(--amber);
+}
+
+/* In-context repeat of the same warning, in the gallery. */
+.art-callout {
+  margin-top: 26px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 179, 71, 0.45);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  background: rgba(255, 179, 71, 0.07);
+  color: #ffd9a0;
+  font-size: 0.95rem;
+}
+.art-callout strong {
+  color: var(--amber);
+}
+
+.site-header {
   background: rgba(7, 2, 26, 0.78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -735,6 +795,12 @@ a:hover { color: var(--cyan-soft); }
   font-size: 1.05rem;
   color: var(--cyan);
 }
+/* Reads as "not decided yet" rather than as a real value. Needs to
+   out-specify `.spec dd` above, which would otherwise keep it cyan. */
+.spec dd.spec-tbd {
+  color: var(--text-faint);
+  font-style: italic;
+}
 
 /* ---------- Gallery ---------- */
 .gallery-grid {
@@ -944,6 +1010,12 @@ a:hover { color: var(--cyan-soft); }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
+  /* Measured stack is ~181px here; the extra leaves visual breathing
+     room rather than landing the heading flush against the bar. */
+  html { scroll-padding-top: 196px; }
+  .art-notice-inner { padding-block: 8px; }
+  .art-notice p { font-size: 0.72rem; letter-spacing: 0.03em; }
+
   /* Nav wraps to its own row and scrolls sideways rather than
      disappearing — no hamburger menu needed for four links. */
   .header-inner {

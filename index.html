@@ -53,6 +53,27 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<!-- ================= TOP BAR (notice + header) =================
+     The notice and the header share one sticky wrapper so the
+     placeholder-art warning cannot be scrolled past. To let it
+     scroll away instead, move `position: sticky` off `.topbar`
+     and back onto `.site-header` in styles.css.
+     ============================================================ -->
+<div class="topbar">
+
+  <!-- Placeholder-art disclaimer. Delete this whole block once the
+       real artwork is in place. -->
+  <div class="art-notice" role="note">
+    <div class="wrap art-notice-inner">
+      <svg class="art-notice-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 2 L22 20 H2 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M12 9 v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="1.2" fill="currentColor"/>
+      </svg>
+      <p><strong>Placeholder art.</strong> Every visual on this site is temporary and does not represent the final look of Alert5.</p>
+    </div>
+  </div>
+
 <!-- ============================ HEADER ============================ -->
 <header class="site-header" id="top">
   <div class="wrap header-inner">
@@ -70,6 +91,8 @@
     <a class="btn btn-sm" href="#signup">Get Updates</a>
   </div>
 </header>
+
+</div><!-- /.topbar -->
 
 <main id="main">
 
@@ -188,23 +211,23 @@
         </li>
       </ul>
 
-      <!-- TODO: fill in or delete. Good place for player count, play time, age. -->
+      <!-- TODO: replace the two "TBD" values once they settle. -->
       <dl class="spec-strip">
         <div class="spec">
           <dt>Players</dt>
-          <dd><span class="slot slot-xs" data-label="e.g. 1-4"></span></dd>
+          <dd>2&ndash;5</dd>
         </div>
         <div class="spec">
           <dt>Play Time</dt>
-          <dd><span class="slot slot-xs" data-label="e.g. 90 min"></span></dd>
+          <dd class="spec-tbd">TBD</dd>
         </div>
         <div class="spec">
           <dt>Ages</dt>
-          <dd><span class="slot slot-xs" data-label="e.g. 14+"></span></dd>
+          <dd class="spec-tbd">TBD</dd>
         </div>
         <div class="spec">
           <dt>Status</dt>
-          <dd><span class="slot slot-xs" data-label="e.g. Prototype"></span></dd>
+          <dd>In Development</dd>
         </div>
       </dl>
     </div>
@@ -218,6 +241,13 @@
       <div class="section-lede">
         <span class="slot slot-sm" data-label="OPTIONAL INTRO LINE FOR THE GALLERY"></span>
       </div>
+
+      <!-- Second placeholder-art warning, in the one section that will
+           actually hold images. Delete alongside the top bar notice. -->
+      <p class="art-callout" role="note">
+        <strong>Nothing here is final.</strong> These tiles are empty
+        placeholders, not concept art, screenshots or components from the game.
+      </p>
 
       <!--
         TODO: swap each figure's .media-slot for a real asset:

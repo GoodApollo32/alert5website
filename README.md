@@ -22,11 +22,28 @@ The page ships with **empty content areas on purpose** — every one shows as a
 dashed box with a monospace field label so the layout doesn't collapse. Work
 through this list and the placeholders disappear as you fill them in.
 
-### 1. Email signup — connected
+### 0. Removing the placeholder-art disclaimer
+
+Two notices warn that the visuals are temporary:
+
+- the amber bar above the header (`.art-notice` in `index.html`), which
+  shares a sticky wrapper with the header so it cannot be scrolled past
+- a callout in the gallery section (`.art-callout`)
+
+Delete both blocks once the real artwork is in, then drop `.art-notice`,
+`.art-callout` and `.topbar` from `styles.css` and move `position: sticky`
+back onto `.site-header`. The `scroll-padding-top` values in `styles.css`
+(132px, and 196px under the 860px breakpoint) are sized for the taller
+stack and should come back down to about 90px.
+
+### 1. Email signup — connected and confirmed working
 
 Wired to the Buttondown list `alert5`
 (`BUTTONDOWN_USERNAME` in `main.js`). Both forms POST to
 `https://buttondown.com/api/emails/embed-subscribe/alert5`.
+
+A real signup has been submitted through the live site and arrived in
+Buttondown, so the round trip is confirmed end to end.
 
 Behaviour, verified against a mocked endpoint:
 
@@ -69,8 +86,9 @@ type your text in its place. In rough priority order:
 
 - [ ] **Hero** — headline, tagline, short pitch
 - [ ] **Signup** — what subscribers get and how often you'll email
-- [ ] **What is Alert5** — premise, four feature cards, the spec strip
-      (players / play time / ages / status)
+- [ ] **What is Alert5** — premise and the four feature cards. The spec
+      strip is partly done: players (2–5) and status are set, play time
+      and ages are marked `TBD` and need real values.
 - [ ] **Gallery** — swap each `.media-slot` for a real `<img>`; keep the `alt`
       text, it matters for accessibility and search
 - [ ] **Roadmap** — four milestones; mark progress by adding `is-done` or
