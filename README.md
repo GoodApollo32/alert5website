@@ -54,6 +54,19 @@ The neon rim lighting is CSS `drop-shadow`, not baked into the file, so
 it stays tunable. To swap the photo, replace both files and keep the
 259x578 aspect ratio, or update `width`/`height` on the `<img>`.
 
+**Why the display size is capped at 130px.** The jet occupies only
+259x578 px in the source photo, so 130 CSS px is exactly 1:1 on a 2x
+screen. Displaying it larger upscales it and it goes soft — the detail
+was never captured. A replacement photo with the aircraft spanning
+800px or more could be shown much bigger; raise the `width` clamp in
+`.hero-jet` to roughly `native_px / 2` when that happens.
+
+Sourcing notes for a replacement, so the same cutout script keeps
+working: plain sky behind the aircraft, the aircraft large in frame,
+good tonal separation (dark airframe against bright sky), and clear of
+the frame edges. Contrails are fine — being brighter than the sky, the
+threshold drops them automatically.
+
 ### 1. Email signup — connected and confirmed working
 
 Wired to the Buttondown list `alert5`

@@ -571,9 +571,12 @@ a:hover { color: var(--cyan-soft); }
    reads against the near-black background. */
 .hero-jet {
   position: absolute;
-  right: clamp(-30px, 1vw, 50px);
-  bottom: 10%;
-  width: clamp(150px, 19vw, 240px);
+  right: clamp(-10px, 4vw, 70px);
+  bottom: 12%;
+  /* Capped at 130px on purpose. The cutout is 259px wide natively, so
+     130 CSS px is exactly 1:1 on a 2x display. Anything larger is
+     upscaled and goes soft — the source photo has no more detail. */
+  width: clamp(105px, 10vw, 130px);
   z-index: -1;
   /* Held back so it reads as atmosphere behind the copy rather than
      competing with it. Desaturated a little so the neutral grey of the
@@ -1044,11 +1047,11 @@ a:hover { color: var(--cyan-soft); }
      and gets clipped, so move it up into the open sky and let it bleed
      off the right edge. `.hero` already clips the overflow. */
   .hero-jet {
-    width: 118px;
-    right: -32px;
-    top: 3%;
+    width: 112px;   /* 224px at 2x, still inside the 259px native width */
+    right: -22px;
+    top: 4%;
     bottom: auto;
-    opacity: 0.45;
+    opacity: 0.5;
   }
 
   /* Nav wraps to its own row and scrolls sideways rather than
