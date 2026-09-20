@@ -5,7 +5,7 @@ in development. Its job is to collect email addresses for a launch/update
 mailing list and to hold a place for content that gets added later.
 
 - No build step, no dependencies, no framework.
-- All artwork is CSS and inline SVG, so the site needs zero image files today.
+- Artwork is CSS and inline SVG plus one cut-out photo in `images/`.
 - Hosted on GitHub Pages via `.github/workflows/deploy.yml`.
 
 ```
@@ -38,44 +38,39 @@ stack and should come back down to about 90px.
 
 ### 0b. The hero jet image
 
-`images/jet.webp` (21 KB) with `images/jet.png` (15 KB) as a fallback,
-served via `<picture>`. An F-16 photograph, 1193x697, with the sky
-masked out and the afterburner plume kept.
+`images/jet.webp` (21 KB) with `images/jet.png` (15 KB) as a fallback, served
+via `<picture>`. An F-16 photograph, 1193x697, sky masked out, afterburner
+plume kept. It sits centred behind the hero headline.
+
+It is a child of `.title-block` rather than positioned against the hero box,
+so it stays centred on the headline as the hero reflows instead of relying on
+a hand-tuned offset. `.hero-title` is lifted above it with `z-index`.
 
 **How the cutout was made.** Two subjects needing opposite tests:
 
-- *Airframe* — a near silhouette. Measured luminance p99 is 32 while
-  the sky bottoms out at 58, a clean gap, so it is found by hysteresis
-  on absolute luminance: seed below 32, grow into anything below 48
-  that connects to the seed.
-- *Plume* — brighter than the sky and the only saturated thing in frame
-  (sky chroma is median 9 / p99 16; the plume reaches 81+). Isolated on
-  colour **and** brightness together, with graded alpha so its glow
-  falls off rather than ending on a hard cut.
+- *Airframe* — a near silhouette. Luminance p99 is 32 while the sky bottoms out
+  at 58, a clean gap, so hysteresis on absolute luminance: seed below 32, grow
+  into anything below 48 connected to that seed.
+- *Plume* — brighter than the sky and the only saturated thing in frame (sky
+  chroma median 9 / p99 16; plume 81+). Gated on colour **and** brightness,
+  with graded alpha so the glow falls off instead of ending on a hard cut.
 
-Two things that did not work, recorded so they are not retried:
+Two approaches that failed, recorded so they are not retried:
 
-1. *A plain darkness threshold* clipped the sunlit upper surfaces of the
-   first photo's airframe — about 8% of the aircraft. Hysteresis fixed
-   it: bright panels attached to a dark core are kept, isolated noise at
-   the same level is not.
-2. *Fitting a sky surface and thresholding on the difference* worked on
-   a smooth gradient sky but failed here. This sky has cloud structure a
-   polynomial cannot model, and the fit error let dark cloud next to the
-   jet into the mask. Absolute thresholds are better whenever the
-   subject is a silhouette.
+1. *A plain darkness threshold* clipped the sunlit upper surfaces of an earlier
+   photo — about 8% of the airframe. Hysteresis fixed it.
+2. *Fitting a sky surface and thresholding on the difference* works on a smooth
+   gradient sky but not this one: cloud structure defeats the polynomial, and
+   the fit error let dark cloud next to the jet into the mask.
 
-The neon rim lighting is CSS `drop-shadow`, not baked into the file, and
-`brightness(1.45)` lifts the silhouette off the near-black background.
+Neon rim lighting is CSS `drop-shadow` and `brightness(1.5)` lifts the
+silhouette off the near-black page; neither is baked into the file.
 
-**Display size and sharpness.** Never display wider than `native_px / 2`
-or it upscales on a 2x screen and goes soft. At 1193px native the cap is
-~596; the layout uses 430 desktop / 330 mobile, leaving headroom even at
-3x. The previous photo was only 259px wide, which forced a 130px display.
+**Never display wider than `native_px / 2`** or it upscales on a 2x screen and
+goes soft. At 1193px native the cap is ~596; the layout uses 580.
 
-Sourcing notes for a replacement: plain sky, aircraft large in frame,
-strong tonal separation, clear of the frame edges. Contrails and plumes
-are fine and can be kept or dropped by adjusting the chroma gate.
+Sourcing notes for a replacement: plain sky, aircraft large in frame, strong
+tonal separation, clear of the frame edges.
 
 ### 1. Email signup — connected and confirmed working
 
@@ -99,10 +94,6 @@ Behaviour, verified against a mocked endpoint:
 If `BUTTONDOWN_USERNAME` is ever blanked or reset to a `YOUR-` placeholder,
 the form stops submitting and shows an amber "not connected" notice rather
 than a false success.
-
-**Switching to ConvertKit or Mailchimp instead?** Replace `ENDPOINT_BASE` and
-the request body in `main.js` — the validation, honeypot, status messages and
-fallback all stay as they are.
 
 **Switching to ConvertKit or Mailchimp instead?** Replace `ENDPOINT_BASE` and
 the request body in `main.js` — the validation, honeypot, status messages and

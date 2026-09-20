@@ -110,7 +110,19 @@
 
       <p class="eyebrow">In Development</p>
 
-      <h1 class="hero-title">Alert<span class="five">5</span></h1>
+      <!-- The jet is a child of the title block so it stays centred on
+           the headline at any viewport width, rather than being placed
+           by a hand-tuned offset that drifts as the hero reflows. -->
+      <div class="title-block">
+        <div class="hero-jet" aria-hidden="true">
+          <picture>
+            <source srcset="images/jet.webp" type="image/webp">
+            <img src="images/jet.png" alt="" width="1193" height="697"
+                 decoding="async" fetchpriority="low">
+          </picture>
+        </div>
+        <h1 class="hero-title">Alert<span class="five">5</span></h1>
+      </div>
 
       <p class="hero-tagline">The world is theirs. The sky is still ours.</p>
 
@@ -159,16 +171,6 @@
 
     </div>
 
-    <!-- Decorative jet photograph with the sky masked out. Purely
-         atmospheric, so it is hidden from assistive tech and nothing
-         breaks if the file fails to load. -->
-    <div class="hero-jet" aria-hidden="true">
-      <picture>
-        <source srcset="images/jet.webp" type="image/webp">
-        <img src="images/jet.png" alt="" width="1193" height="697"
-             decoding="async" fetchpriority="low">
-      </picture>
-    </div>
   </section>
 
   <!-- ============================ ABOUT ============================ -->
