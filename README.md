@@ -1,6 +1,6 @@
 # Alert5 — landing page
 
-Static landing page for **Alert5**, a fighter-jet-themed tactical RPG board game
+Static landing page for **Alert5**, a cooperative hex-based tactics board game
 in development. Its job is to collect email addresses for a launch/update
 mailing list and to hold a place for content that gets added later.
 

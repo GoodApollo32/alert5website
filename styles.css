@@ -808,6 +808,17 @@ a:hover { color: var(--cyan-soft); }
   font-style: italic;
 }
 
+/* Qualifier under a spec value, e.g. what the player count counts. */
+.spec-note {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
 /* ---------- Gallery ---------- */
 .gallery-grid {
   margin-top: 44px;
