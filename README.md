@@ -67,7 +67,7 @@ Neon rim lighting is CSS `drop-shadow` and `brightness(1.5)` lifts the
 silhouette off the near-black page; neither is baked into the file.
 
 **Never display wider than `native_px / 2`** or it upscales on a 2x screen and
-goes soft. At 1193px native the cap is ~596; the layout uses 580.
+goes soft. At 1193px native the cap is ~596; the layout uses 440, which also keeps the lower wing clear of the body copy.
 
 Sourcing notes for a replacement: plain sky, aircraft large in frame, strong
 tonal separation, clear of the frame edges.

@@ -555,8 +555,9 @@ a:hover { color: var(--cyan-soft); }
   position: absolute;
   top: 50%;
   left: 50%;
-  /* 1193px native, so staying under ~596 keeps it 1:1 on a 2x screen. */
-  width: clamp(320px, 52vw, 580px);
+  /* Capped at 440 so the lower wing stays clear of the tagline and body
+     copy. 1193px native, so anything under ~596 is 1:1 on a 2x screen. */
+  width: clamp(300px, 40vw, 440px);
   /* Also set outside the keyframes: with prefers-reduced-motion the
      animation is cut short and the element falls back to this. */
   transform: translate(-50%, -50%);
