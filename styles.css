@@ -472,10 +472,12 @@ a:hover { color: var(--cyan-soft); }
   content: "";
   position: absolute;
   inset: 0;
-  /* Sized to sit behind the copy block only, so it protects the text
-     without flattening the sun below it. */
+  /* Sized to cover the whole copy block (eyebrow through pitch) so the
+     sun cannot wash the text out, while still leaving the sun itself
+     visible below. Measured: this is what pulls the pitch paragraph up
+     out of failing contrast. */
   background:
-    radial-gradient(ellipse 46% 26% at 50% 33%, rgba(7, 2, 26, 0.82), transparent 70%),
+    radial-gradient(ellipse 56% 36% at 50% 34%, rgba(7, 2, 26, 0.94), transparent 74%),
     linear-gradient(180deg, rgba(7, 2, 26, 0.5) 0%, transparent 26%);
   z-index: 1;
 }
@@ -577,9 +579,20 @@ a:hover { color: var(--cyan-soft); }
   50%      { transform: translate(-50%, calc(-50% - 12px)); }
 }
 
-.hero-title {
+/* Every piece of hero copy must be explicitly stacked above the jet.
+   The jet is absolutely positioned, and positioned elements paint above
+   static in-flow content whatever their z-index, so leaving these as
+   static let the jet render on top of the tagline and pitch. */
+.eyebrow,
+.hero-title,
+.hero-tagline,
+.hero-pitch,
+.signup-card {
   position: relative;
   z-index: 1;
+}
+
+.hero-title {
   width: 100%;
   max-width: 760px;
   font-family: var(--font-display);
@@ -590,7 +603,10 @@ a:hover { color: var(--cyan-soft); }
 }
 /* When you replace the slot with real text, this gives it the chrome+neon look. */
 .hero-title:not(:has(.slot)) {
-  background: linear-gradient(180deg, #ffffff 0%, #d6c7ff 40%, var(--magenta) 78%, #9e1566 100%);
+  /* Ends on --magenta rather than a darker shade below it. The old
+     final stop (#9e1566) put the bottom of every glyph at roughly the
+     luminance of the background, measuring 1.03:1 worst case. */
+  background: linear-gradient(180deg, #ffffff 0%, #f2e9ff 38%, #ff7ac0 72%, var(--magenta) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -612,8 +628,13 @@ a:hover { color: var(--cyan-soft); }
 .hero-pitch {
   width: 100%;
   max-width: 620px;
-  color: var(--text-dim);
-  text-shadow: 0 2px 14px rgba(7, 2, 26, 0.95), 0 0 30px rgba(7, 2, 26, 0.8);
+  /* Full-strength text, not --text-dim: the sun sits directly behind
+     this paragraph and dim lavender over it measured 1.31:1. */
+  color: var(--text);
+  text-shadow:
+    0 1px 3px rgba(7, 2, 26, 1),
+    0 2px 16px rgba(7, 2, 26, 0.98),
+    0 0 36px rgba(7, 2, 26, 0.9);
 }
 
 /* ============================================================
