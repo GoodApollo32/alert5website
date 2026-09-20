@@ -563,27 +563,34 @@ a:hover { color: var(--cyan-soft); }
   text-shadow: 0 2px 14px rgba(7, 2, 26, 0.95), 0 0 30px rgba(7, 2, 26, 0.8);
 }
 
-/* Decorative jet */
+/* Decorative jet photo.
+   Sits to the right of the centred hero copy rather than under it: the
+   cutout is tall (259x578), so centring it would bury most of the
+   airframe behind the signup card. The neon rim lights are drop-shadows
+   rather than baked into the image, so they stay tunable and the photo
+   reads against the near-black background. */
 .hero-jet {
   position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(120px, 16vw, 200px);
-  opacity: 0.9;
+  right: clamp(-30px, 1vw, 50px);
+  bottom: 10%;
+  width: clamp(150px, 19vw, 240px);
   z-index: -1;
-  animation: jet-hover 6s ease-in-out infinite;
+  /* Held back so it reads as atmosphere behind the copy rather than
+     competing with it. Desaturated a little so the neutral grey of the
+     photo does not fight the magenta/cyan palette. */
+  opacity: 0.82;
+  filter:
+    brightness(0.98) contrast(1.08) saturate(0.8)
+    drop-shadow(0 0 20px rgba(0, 229, 255, 0.4))
+    drop-shadow(0 0 55px rgba(255, 45, 149, 0.25));
+  animation: jet-drift 7s ease-in-out infinite;
 }
-@keyframes jet-hover {
-  0%, 100% { transform: translate(-50%, 0); }
-  50%      { transform: translate(-50%, -14px); }
+.hero-jet img { width: 100%; height: auto; }
+
+@keyframes jet-drift {
+  0%, 100% { transform: rotate(-8deg) translateY(0); }
+  50%      { transform: rotate(-8deg) translateY(-16px); }
 }
-.jet-body   { fill: #1a0a3d; stroke: var(--cyan);    stroke-width: 2; }
-.jet-wing   { fill: #14082f; stroke: var(--magenta); stroke-width: 2; }
-.jet-tail   { fill: #14082f; stroke: var(--magenta); stroke-width: 2; }
-.jet-canopy { fill: rgba(0, 229, 255, 0.35); stroke: var(--cyan-soft); stroke-width: 1.5; }
-.jet-burn   { fill: var(--amber); }
-.jet-art    { filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.55)); }
 
 /* ============================================================
    EMAIL SIGNUP
@@ -1032,6 +1039,17 @@ a:hover { color: var(--cyan-soft); }
   html { scroll-padding-top: 196px; }
   .art-notice-inner { padding-block: 8px; }
   .art-notice p { font-size: 0.72rem; letter-spacing: 0.03em; }
+
+  /* At the bottom of a narrow hero the jet lands behind the signup card
+     and gets clipped, so move it up into the open sky and let it bleed
+     off the right edge. `.hero` already clips the overflow. */
+  .hero-jet {
+    width: 118px;
+    right: -32px;
+    top: 3%;
+    bottom: auto;
+    opacity: 0.45;
+  }
 
   /* Nav wraps to its own row and scrolls sideways rather than
      disappearing — no hamburger menu needed for four links. */

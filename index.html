@@ -159,19 +159,15 @@
 
     </div>
 
-    <!-- Decorative jet, drawn in SVG so it needs no asset file. -->
+    <!-- Decorative jet photograph with the sky masked out. Purely
+         atmospheric, so it is hidden from assistive tech and nothing
+         breaks if the file fails to load. -->
     <div class="hero-jet" aria-hidden="true">
-      <svg viewBox="0 0 200 180" role="presentation" focusable="false">
-        <g class="jet-art">
-          <path class="jet-wing" d="M108 78 L172 134 L169 145 L108 127 Z"/>
-          <path class="jet-wing" d="M92 78 L28 134 L31 145 L92 127 Z"/>
-          <path class="jet-tail" d="M106 138 L138 166 L135 174 L104 158 Z"/>
-          <path class="jet-tail" d="M94 138 L62 166 L65 174 L96 158 Z"/>
-          <path class="jet-body" d="M100 4 L108 40 L110 96 L106 150 L100 166 L94 150 L90 96 L92 40 Z"/>
-          <ellipse class="jet-canopy" cx="100" cy="44" rx="6.5" ry="17"/>
-          <path class="jet-burn" d="M96 164 L100 180 L104 164 Z"/>
-        </g>
-      </svg>
+      <picture>
+        <source srcset="images/jet.webp" type="image/webp">
+        <img src="images/jet.png" alt="" width="259" height="578"
+             decoding="async" fetchpriority="low">
+      </picture>
     </div>
   </section>
 

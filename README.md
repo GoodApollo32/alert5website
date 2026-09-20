@@ -36,6 +36,24 @@ back onto `.site-header`. The `scroll-padding-top` values in `styles.css`
 (132px, and 196px under the 860px breakpoint) are sized for the taller
 stack and should come back down to about 90px.
 
+### 0b. The hero jet image
+
+`images/jet.webp` (9 KB) with `images/jet.png` (16 KB) as a fallback,
+served via `<picture>`. It is a photograph with the sky masked out.
+
+The sky in the source was a gradient, not a flat colour, so a single
+luminance threshold clipped the airframe at one corner while leaving sky
+at the other. The cutout was produced by fitting a quadratic surface to
+the sky, thresholding on the difference from that surface, keeping the
+largest connected component, then eroding one pixel and re-blurring the
+edge so no pale JPEG fringe survives against the near-black background.
+The vapour trails are excluded — they are brighter than the sky, not
+darker, so the same threshold drops them.
+
+The neon rim lighting is CSS `drop-shadow`, not baked into the file, so
+it stays tunable. To swap the photo, replace both files and keep the
+259x578 aspect ratio, or update `width`/`height` on the `<img>`.
+
 ### 1. Email signup — connected and confirmed working
 
 Wired to the Buttondown list `alert5`
