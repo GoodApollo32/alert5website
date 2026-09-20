@@ -38,34 +38,44 @@ stack and should come back down to about 90px.
 
 ### 0b. The hero jet image
 
-`images/jet.webp` (9 KB) with `images/jet.png` (16 KB) as a fallback,
-served via `<picture>`. It is a photograph with the sky masked out.
+`images/jet.webp` (21 KB) with `images/jet.png` (15 KB) as a fallback,
+served via `<picture>`. An F-16 photograph, 1193x697, with the sky
+masked out and the afterburner plume kept.
 
-The sky in the source was a gradient, not a flat colour, so a single
-luminance threshold clipped the airframe at one corner while leaving sky
-at the other. The cutout was produced by fitting a quadratic surface to
-the sky, thresholding on the difference from that surface, keeping the
-largest connected component, then eroding one pixel and re-blurring the
-edge so no pale JPEG fringe survives against the near-black background.
-The vapour trails are excluded — they are brighter than the sky, not
-darker, so the same threshold drops them.
+**How the cutout was made.** Two subjects needing opposite tests:
 
-The neon rim lighting is CSS `drop-shadow`, not baked into the file, so
-it stays tunable. To swap the photo, replace both files and keep the
-259x578 aspect ratio, or update `width`/`height` on the `<img>`.
+- *Airframe* — a near silhouette. Measured luminance p99 is 32 while
+  the sky bottoms out at 58, a clean gap, so it is found by hysteresis
+  on absolute luminance: seed below 32, grow into anything below 48
+  that connects to the seed.
+- *Plume* — brighter than the sky and the only saturated thing in frame
+  (sky chroma is median 9 / p99 16; the plume reaches 81+). Isolated on
+  colour **and** brightness together, with graded alpha so its glow
+  falls off rather than ending on a hard cut.
 
-**Why the display size is capped at 130px.** The jet occupies only
-259x578 px in the source photo, so 130 CSS px is exactly 1:1 on a 2x
-screen. Displaying it larger upscales it and it goes soft — the detail
-was never captured. A replacement photo with the aircraft spanning
-800px or more could be shown much bigger; raise the `width` clamp in
-`.hero-jet` to roughly `native_px / 2` when that happens.
+Two things that did not work, recorded so they are not retried:
 
-Sourcing notes for a replacement, so the same cutout script keeps
-working: plain sky behind the aircraft, the aircraft large in frame,
-good tonal separation (dark airframe against bright sky), and clear of
-the frame edges. Contrails are fine — being brighter than the sky, the
-threshold drops them automatically.
+1. *A plain darkness threshold* clipped the sunlit upper surfaces of the
+   first photo's airframe — about 8% of the aircraft. Hysteresis fixed
+   it: bright panels attached to a dark core are kept, isolated noise at
+   the same level is not.
+2. *Fitting a sky surface and thresholding on the difference* worked on
+   a smooth gradient sky but failed here. This sky has cloud structure a
+   polynomial cannot model, and the fit error let dark cloud next to the
+   jet into the mask. Absolute thresholds are better whenever the
+   subject is a silhouette.
+
+The neon rim lighting is CSS `drop-shadow`, not baked into the file, and
+`brightness(1.45)` lifts the silhouette off the near-black background.
+
+**Display size and sharpness.** Never display wider than `native_px / 2`
+or it upscales on a 2x screen and goes soft. At 1193px native the cap is
+~596; the layout uses 430 desktop / 330 mobile, leaving headroom even at
+3x. The previous photo was only 259px wide, which forced a 130px display.
+
+Sourcing notes for a replacement: plain sky, aircraft large in frame,
+strong tonal separation, clear of the frame edges. Contrails and plumes
+are fine and can be kept or dropped by adjusting the chroma gate.
 
 ### 1. Email signup — connected and confirmed working
 

@@ -287,6 +287,18 @@ a:hover { color: var(--cyan-soft); }
   color: var(--cyan);
   text-shadow: var(--glow-cyan);
 }
+
+/* The "5" of Alert5 wherever the name appears as a title, matching the
+   header wordmark. `-webkit-text-fill-color` is the load-bearing part:
+   headings that use background-clip:text set `color: transparent`, and
+   a plain `color` on the child loses to that, leaving the 5 in whatever
+   the gradient happens to be at that point — magenta on near-black in
+   the hero, which is what made it hard to read. */
+.five {
+  color: var(--cyan);
+  -webkit-text-fill-color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+}
 .wordmark-sm { font-size: 1.15rem; }
 
 .site-nav {
@@ -571,21 +583,22 @@ a:hover { color: var(--cyan-soft); }
    reads against the near-black background. */
 .hero-jet {
   position: absolute;
-  right: clamp(-10px, 4vw, 70px);
-  bottom: 12%;
-  /* Capped at 130px on purpose. The cutout is 259px wide natively, so
-     130 CSS px is exactly 1:1 on a 2x display. Anything larger is
-     upscaled and goes soft — the source photo has no more detail. */
-  width: clamp(105px, 10vw, 130px);
+  /* Kept fully inside the frame: the plume is the strongest part of the
+     image and clipping it at the right edge throws that away. */
+  right: clamp(6px, 2vw, 34px);
+  bottom: 13%;
+  /* The cutout is 1193px wide natively, so anything up to ~596px stays
+     1:1 on a 2x display. 430 leaves headroom even at 3x. */
+  width: clamp(270px, 35vw, 430px);
   z-index: -1;
-  /* Held back so it reads as atmosphere behind the copy rather than
-     competing with it. Desaturated a little so the neutral grey of the
-     photo does not fight the magenta/cyan palette. */
-  opacity: 0.82;
+  /* The airframe is a near silhouette (median luminance 22) and the page
+     background is near black, so it needs lifting to read at all. The
+     rim glows double as separation from the background. */
+  opacity: 0.9;
   filter:
-    brightness(0.98) contrast(1.08) saturate(0.8)
-    drop-shadow(0 0 20px rgba(0, 229, 255, 0.4))
-    drop-shadow(0 0 55px rgba(255, 45, 149, 0.25));
+    brightness(1.45) contrast(1.02)
+    drop-shadow(0 0 18px rgba(0, 229, 255, 0.35))
+    drop-shadow(0 0 45px rgba(255, 179, 71, 0.28));
   animation: jet-drift 7s ease-in-out infinite;
 }
 .hero-jet img { width: 100%; height: auto; }
@@ -1047,11 +1060,11 @@ a:hover { color: var(--cyan-soft); }
      and gets clipped, so move it up into the open sky and let it bleed
      off the right edge. `.hero` already clips the overflow. */
   .hero-jet {
-    width: 112px;   /* 224px at 2x, still inside the 259px native width */
-    right: -22px;
-    top: 4%;
+    width: 330px;   /* 660px at 2x, inside the 1193px native width */
+    right: 8px;     /* fully in frame so the plume is not cut off */
+    top: 3%;
     bottom: auto;
-    opacity: 0.5;
+    opacity: 0.42;  /* sits behind the headline, so held well back */
   }
 
   /* Nav wraps to its own row and scrolls sideways rather than
