@@ -994,8 +994,16 @@ a:hover { color: var(--cyan-soft); }
   gap: 16px;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
+
+/* The question text must be ONE element. The summary is a flex row with
+   a 16px gap and space-between, so any inline markup inside it (such as
+   the cyan 5 in "Alert5") would split the sentence into separate flex
+   items and get spaced apart from the words either side of it. */
+.faq-q { flex: 1 1 auto; min-width: 0; }
+
 .faq-item summary::after {
   content: "+";
+  flex: none;
   font-family: var(--font-mono);
   font-size: 1.4rem;
   line-height: 1;
@@ -1111,7 +1119,12 @@ a:hover { color: var(--cyan-soft); }
   body { font-size: 17px; }
   .wrap { padding-inline: 16px; }
   .signup-card { padding: 22px 18px 18px; }
-  .signup-form { flex-direction: column; }
+  .signup-form { flex-direction: column; flex-wrap: nowrap; }
+  /* `.field` carries `flex: 1 1 220px`, and flex-basis applies to the
+     main axis — which is the HEIGHT once the form stacks. Left alone it
+     makes the field 220px tall around a 49px input, opening 171px of
+     dead space above the button. Size it to its content instead. */
+  .signup-form .field { flex: 0 0 auto; width: 100%; }
   .signup-form .btn { width: 100%; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-legal { flex-direction: column; }
