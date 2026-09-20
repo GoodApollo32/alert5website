@@ -721,6 +721,12 @@ a:hover { color: var(--cyan-soft); }
   max-width: 640px;
   color: var(--text-dim);
 }
+.section-lede p + p { margin-top: 14px; }
+/* Ship and vessel names, e.g. The Phoenix. */
+.section-lede em {
+  color: var(--cyan-soft);
+  font-style: italic;
+}
 
 /* ---------- Feature grid ---------- */
 .feature-grid {
